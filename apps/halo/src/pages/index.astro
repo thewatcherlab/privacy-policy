@@ -1,0 +1,42 @@
+---
+import SiteLayout from "@privacy-policy/ui/site-layout.astro";
+import AccordionItem from "@privacy-policy/ui/components/accordion-item.astro";
+import { app, faqs } from "../config/app";
+---
+
+<SiteLayout app={app} title={`${app.name} Support`}>
+	<article class="prose-page">
+		<h1>
+			{app.name}
+			<span class="script">{app.tagline}</span>
+		</h1>
+		<p class="meta">for {app.platform}</p>
+
+		<p class="lead">Halo tracks your bills and spending and reminds you before a payment is due. Set monthly budgets and savings goals, scan and split receipts, and keep everything in sync with iCloud.</p>
+
+		<div class="callout">
+			<p><strong>Found a bug or have a question?</strong></p>
+			<p>
+				Email <a href={`mailto:${app.email}`}>{app.email}</a> and include your iPhone model and iOS version if
+				something isn't working.
+			</p>
+		</div>
+
+		<h2>Common questions</h2>
+		<div class="accordion">
+			{
+				faqs.map((item, index) => (
+					<AccordionItem title={item.q} open={index === 0}>
+						<p>{item.a}</p>
+					</AccordionItem>
+				))
+			}
+		</div>
+
+		<h2>Your privacy</h2>
+		<p>
+			{app.name} keeps your data on your device and in your own iCloud. Read the <a href="/privacy">privacy policy</a> for
+			the details.
+		</p>
+	</article>
+</SiteLayout>

@@ -1,0 +1,13 @@
+{
+  "name": "privacy-policy",
+  "private": true,
+  "type": "module",
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev:peel": "bun --filter @privacy-policy/peel dev",
+    "dev:halo": "bun --filter @privacy-policy/halo dev",
+    "build": "bun --filter './apps/*' build",
+    "build:peel": "bun --filter @privacy-policy/peel build",
+    "build:halo": "bun --filter @privacy-policy/halo build"
+  }
+}

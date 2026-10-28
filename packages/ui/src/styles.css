@@ -1,0 +1,594 @@
+/* The look of sass-web-base's marketing pages, shared by every app site. Each app sets
+   --color-accent and --color-accent-soft on <html> (see site-layout.astro). */
+
+:root {
+	--color-page: #ffffff;
+	--color-ink: #292524;
+	--color-muted: #78716c;
+	--color-faint: #a8a29e;
+	--color-tint: rgb(67 20 7 / 0.05);
+	--color-accent: #8b5cf6;
+	--color-accent-soft: #f5f3ff;
+	--focus-ring: 3px solid color-mix(in srgb, var(--color-accent) 85%, transparent);
+	--font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	--font-script: "Instrument Serif", ui-serif, Georgia, serif;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	color-scheme: light;
+	background: var(--color-page);
+	scroll-behavior: smooth;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	min-height: 100dvh;
+	background: var(--color-page);
+	color: var(--color-ink);
+	font-family: var(--font-sans);
+	font-size: 16px;
+	-webkit-font-smoothing: antialiased;
+}
+
+main {
+	flex: 1;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+::selection {
+	background: color-mix(in srgb, var(--color-accent) 35%, white);
+	color: var(--color-ink);
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+.sr-only:focus {
+	position: fixed;
+	top: 1rem;
+	left: 1rem;
+	z-index: 50;
+	width: auto;
+	height: auto;
+	margin: 0;
+	padding: 0.75rem 1rem;
+	clip: auto;
+	background: var(--color-ink);
+	color: #fff;
+	border-radius: 999px;
+}
+
+/* Sits over the top of the page and scrolls away with it. */
+.site-header {
+	position: absolute;
+	inset: 0 0 auto;
+	z-index: 40;
+}
+
+.header-bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: min(100%, 108rem);
+	min-height: 3.5rem;
+	margin: 0 auto;
+	padding: 1.25rem 1rem;
+}
+
+@media (min-width: 640px) {
+	.header-bar {
+		padding: 1.75rem 2rem;
+	}
+}
+
+.logo {
+	display: flex;
+	align-items: center;
+	border-radius: 1rem;
+	margin: -0.375rem;
+	padding: 0.375rem;
+}
+
+.logo:focus-visible,
+.nav-link:focus-visible,
+.dl:focus-visible,
+.icon-btn:focus-visible,
+.footer-links a:focus-visible,
+.prose-page a:focus-visible {
+	outline: var(--focus-ring);
+	outline-offset: 3px;
+}
+
+.logo-mark {
+	position: relative;
+	width: 2.5rem;
+	height: 2.5rem;
+	margin-right: 0.75rem;
+	overflow: hidden;
+	border-radius: 0.75rem;
+	background: var(--color-ink);
+}
+
+.logo-glyph {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	color: var(--color-accent);
+}
+
+.logo-shape {
+	transform-origin: center;
+	transition: transform 0.3s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+
+.logo-fold {
+	fill: var(--color-accent-soft);
+	transform-origin: center;
+	transition: transform 0.3s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+
+.logo:hover .logo-shape,
+.logo:focus-visible .logo-shape {
+	transform: scale(0.9) rotate(-6deg);
+}
+
+.logo:hover .logo-fold,
+.logo:focus-visible .logo-fold {
+	transform: scale(1.15);
+}
+
+.logo-name {
+	font-size: 1.5rem;
+	font-weight: 700;
+	line-height: 1;
+}
+
+.header-nav {
+	display: flex;
+	align-items: center;
+	gap: 0.375rem;
+}
+
+.nav-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	border-radius: 1rem;
+	padding: 1rem 1.25rem;
+	font-size: 1.125rem;
+	font-weight: 700;
+}
+
+.nav-link svg {
+	width: 1.5rem;
+	height: 1.5rem;
+	fill: currentColor;
+}
+
+.nav-link:hover {
+	background: var(--color-tint);
+}
+
+.nav-link[aria-current="page"] {
+	background: var(--color-tint);
+}
+
+/* On phones the Privacy link is just its icon. */
+@media (max-width: 639px) {
+	.nav-link span {
+		display: none;
+	}
+}
+
+/* A button whose icon slides out and an arrow slides in on hover. */
+.dl {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-height: 3.75rem;
+	overflow: hidden;
+	border-radius: 1rem;
+	padding: 1rem 1.25rem 1rem 3.25rem;
+	font-size: 1.125rem;
+	font-weight: 700;
+	line-height: 1;
+	white-space: nowrap;
+	isolation: isolate;
+}
+
+.dl.soft {
+	color: var(--color-ink);
+	background: var(--color-tint);
+}
+
+.dl.solid {
+	color: #fff;
+	background: var(--color-ink);
+	box-shadow: 0 20px 25px -5px rgb(67 20 7 / 0.25);
+}
+
+.header-nav .dl {
+	margin-left: 0.5rem;
+}
+
+@media (max-width: 639px) {
+	.header-nav .dl {
+		display: none;
+	}
+}
+
+.dl-icon,
+.dl-arrow {
+	position: absolute;
+	display: grid;
+	place-items: center;
+	width: 1.5625rem;
+	height: 1.5625rem;
+	transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
+}
+
+.dl-icon {
+	left: 1.25rem;
+}
+
+.dl-arrow {
+	right: 1.25rem;
+	opacity: 0;
+	transform: translateX(100%) scaleX(0.5);
+	filter: blur(4px);
+}
+
+.dl-label {
+	transition: transform 0.3s ease;
+}
+
+.dl:hover .dl-icon {
+	opacity: 0;
+	transform: translateX(-100%) scaleX(0.5);
+	filter: blur(4px);
+}
+
+.dl:hover .dl-label {
+	transform: translateX(-2rem);
+}
+
+.dl:hover .dl-arrow {
+	opacity: 1;
+	transform: none;
+	filter: none;
+}
+
+/* Long-form pages: support, privacy, 404. */
+.prose-page {
+	width: min(100% - 2rem, 46rem);
+	margin: 0 auto;
+	padding: 9rem 0 6rem;
+}
+
+@media (min-width: 640px) {
+	.prose-page {
+		width: min(100% - 4rem, 46rem);
+		padding-top: 12rem;
+	}
+}
+
+.prose-page h1 {
+	margin: 0 0 1.5rem;
+	font-size: clamp(2.5rem, 8vw, 4rem);
+	font-weight: 800;
+	line-height: 1;
+	letter-spacing: -0.03em;
+	text-wrap: balance;
+}
+
+.prose-page .script {
+	display: block;
+	margin-top: 0.1em;
+	color: var(--color-accent);
+	font-family: var(--font-script);
+	font-size: 0.8em;
+	font-style: italic;
+	font-weight: 400;
+	letter-spacing: -0.01em;
+}
+
+.prose-page h2 {
+	margin: 3rem 0 0.5rem;
+	font-size: 1.5rem;
+	letter-spacing: -0.01em;
+}
+
+.prose-page p,
+.prose-page li {
+	font-size: 1.125rem;
+	line-height: 1.6;
+	text-wrap: pretty;
+}
+
+.prose-page ul {
+	padding-left: 1.25rem;
+}
+
+.prose-page li + li {
+	margin-top: 0.625rem;
+}
+
+.prose-page li::marker {
+	color: var(--color-accent);
+}
+
+.prose-page a {
+	text-decoration: underline;
+	text-decoration-color: color-mix(in srgb, var(--color-accent) 60%, transparent);
+	text-underline-offset: 3px;
+	border-radius: 0.25rem;
+}
+
+.prose-page a:hover {
+	text-decoration-color: currentColor;
+}
+
+.prose-page .meta {
+	margin: 0;
+	color: var(--color-muted);
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+.prose-page .lead {
+	margin-top: 1.5rem;
+	font-size: 1.3125rem;
+	line-height: 1.55;
+}
+
+.prose-page .muted {
+	color: var(--color-muted);
+}
+
+/* The "no servers, no ads" chips under a lead. */
+.prose-page .pills {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin: 1.75rem 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.prose-page .pills li {
+	margin: 0;
+	border-radius: 999px;
+	background: var(--color-accent-soft);
+	padding: 0.375rem 0.875rem;
+	color: color-mix(in srgb, var(--color-accent) 70%, var(--color-ink));
+	font-size: 0.9375rem;
+	font-weight: 700;
+}
+
+.callout {
+	margin-top: 2.5rem;
+	border-radius: 1.25rem;
+	background: var(--color-accent-soft);
+	padding: 1.5rem 1.75rem;
+}
+
+.prose-page .callout p {
+	margin: 0;
+}
+
+.prose-page .callout p + p {
+	margin-top: 0.5rem;
+}
+
+/* Accordion rows (AccordionItem). Rows open and close by animating their height where the
+   browser can (::details-content with interpolate-size), and snap open elsewhere. */
+.accordion {
+	interpolate-size: allow-keywords;
+	margin-top: 1.5rem;
+}
+
+.accordion-item + .accordion-item {
+	border-top: 1px solid rgb(41 37 36 / 0.12);
+}
+
+.accordion-item::details-content {
+	block-size: 0;
+	overflow: clip;
+	transition:
+		block-size 0.2s ease-out,
+		content-visibility 0.2s allow-discrete;
+}
+
+.accordion-item[open]::details-content {
+	block-size: auto;
+}
+
+.accordion-trigger {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding: 1.25rem 0;
+	border-radius: 0.5rem;
+	cursor: pointer;
+	list-style: none;
+	font-size: 1.1875rem;
+	font-weight: 700;
+	letter-spacing: -0.01em;
+	user-select: none;
+}
+
+.accordion-trigger::-webkit-details-marker {
+	display: none;
+}
+
+.accordion-trigger:focus-visible {
+	outline: var(--focus-ring);
+	outline-offset: 3px;
+}
+
+/* A plus that loses its upright stroke and becomes a minus when the row is open. */
+.accordion-icon {
+	flex: none;
+	width: 1rem;
+	height: 1rem;
+	fill: none;
+	stroke: var(--color-faint);
+	stroke-width: 1.5;
+	stroke-linecap: round;
+	transition: stroke 0.15s ease;
+}
+
+.accordion-icon-v {
+	transform-box: fill-box;
+	transform-origin: center;
+	transition: transform 0.2s ease-out;
+}
+
+.accordion-item[open] .accordion-icon-v {
+	transform: scaleY(0);
+}
+
+@media (hover: hover) {
+	.accordion-trigger:hover .accordion-icon {
+		stroke: var(--color-ink);
+	}
+}
+
+/* The answer lines up with the title, past the icon. */
+.accordion-content {
+	padding: 0 0 1.5rem 2rem;
+}
+
+.prose-page .accordion-content p {
+	margin: 0;
+}
+
+.site-footer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0 1rem 5rem;
+}
+
+.socials {
+	display: flex;
+	gap: 0.75rem;
+}
+
+.icon-btn {
+	display: grid;
+	width: 2.5rem;
+	height: 2.5rem;
+	place-items: center;
+	border-radius: 0.75rem;
+	background: var(--color-tint);
+	color: rgb(67 20 7 / 0.5);
+}
+
+.icon-btn:hover {
+	color: rgb(67 20 7 / 0.75);
+}
+
+.icon-btn svg {
+	fill: currentColor;
+	transition: transform 0.3s ease;
+}
+
+.icon-btn:hover svg {
+	transform: scale(1.05);
+}
+
+.footer-links {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.5rem 1.25rem;
+	margin-top: 1.5rem;
+	color: rgb(67 20 7 / 0.5);
+	font-size: 0.875rem;
+	font-weight: 700;
+}
+
+.footer-links a {
+	border-radius: 0.25rem;
+}
+
+.footer-links a:hover {
+	color: rgb(67 20 7 / 0.8);
+}
+
+.wordmark {
+	display: none;
+	height: 14rem;
+	margin-top: -1.5rem;
+	overflow: hidden;
+	background: linear-gradient(to bottom, rgb(67 20 7 / 0.1) 25%, transparent);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	font-size: 20rem;
+	font-weight: 900;
+	line-height: 0.8;
+	user-select: none;
+	pointer-events: none;
+}
+
+@media (min-width: 640px) {
+	.wordmark {
+		display: block;
+	}
+
+	.site-footer {
+		padding-bottom: 0;
+	}
+}
+
+@media (min-width: 768px) {
+	.wordmark {
+		height: 12rem;
+		font-size: 18rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	.wordmark {
+		height: 14rem;
+		font-size: 20rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation: none !important;
+		transition: none !important;
+	}
+}

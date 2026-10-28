@@ -1,0 +1,11 @@
+---
+import SiteLayout from "@privacy-policy/ui/site-layout.astro";
+import { app } from "../config/app";
+---
+
+<SiteLayout app={app} title={`Page not found · ${app.name}`}>
+	<article class="prose-page">
+		<h1>Page not found</h1>
+		<p class="lead">That page doesn't exist. Try <a href="/">{app.name} support</a> or the <a href="/privacy">privacy policy</a>.</p>
+	</article>
+</SiteLayout>
