@@ -8,6 +8,9 @@
     "dev:halo": "bun --filter @privacy-policy/halo dev",
     "build": "bun --filter './apps/*' build",
     "build:peel": "bun --filter @privacy-policy/peel build",
-    "build:halo": "bun --filter @privacy-policy/halo build"
+    "build:halo": "bun --filter @privacy-policy/halo build",
+    "deploy:peel": "bun run build:peel && bunx wrangler deploy --config apps/peel/wrangler.jsonc",
+    "deploy:halo": "bun run build:halo && bunx wrangler deploy --config apps/halo/wrangler.jsonc",
+    "deploy": "bun run deploy:peel && bun run deploy:halo"
   }
 }
