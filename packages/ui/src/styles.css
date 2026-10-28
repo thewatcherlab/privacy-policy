@@ -11,7 +11,6 @@
 	--color-accent-soft: #f5f3ff;
 	--focus-ring: 3px solid color-mix(in srgb, var(--color-accent) 85%, transparent);
 	--font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-	--font-script: "Instrument Serif", ui-serif, Georgia, serif;
 }
 
 *,
@@ -120,43 +119,20 @@ a {
 	outline-offset: 3px;
 }
 
+/* The app icon, rounded like on the Home Screen. The hairline keeps a light icon from
+   melting into the white page. */
 .logo-mark {
-	position: relative;
 	width: 2.5rem;
 	height: 2.5rem;
 	margin-right: 0.75rem;
-	overflow: hidden;
-	border-radius: 0.75rem;
-	background: var(--color-ink);
-}
-
-.logo-glyph {
-	position: absolute;
-	inset: 0;
-	width: 100%;
-	height: 100%;
-	color: var(--color-accent);
-}
-
-.logo-shape {
-	transform-origin: center;
+	border-radius: 0.625rem;
+	box-shadow: 0 0 0 1px rgb(41 37 36 / 0.08);
 	transition: transform 0.3s cubic-bezier(0.3, 1.4, 0.5, 1);
 }
 
-.logo-fold {
-	fill: var(--color-accent-soft);
-	transform-origin: center;
-	transition: transform 0.3s cubic-bezier(0.3, 1.4, 0.5, 1);
-}
-
-.logo:hover .logo-shape,
-.logo:focus-visible .logo-shape {
-	transform: scale(0.9) rotate(-6deg);
-}
-
-.logo:hover .logo-fold,
-.logo:focus-visible .logo-fold {
-	transform: scale(1.15);
+.logo:hover .logo-mark,
+.logo:focus-visible .logo-mark {
+	transform: scale(1.06) rotate(-4deg);
 }
 
 .logo-name {
@@ -304,15 +280,13 @@ a {
 	text-wrap: balance;
 }
 
-.prose-page .script {
+.prose-page .subtitle {
 	display: block;
-	margin-top: 0.1em;
+	margin-top: 0.15em;
 	color: var(--color-accent);
-	font-family: var(--font-script);
-	font-size: 0.8em;
-	font-style: italic;
-	font-weight: 400;
-	letter-spacing: -0.01em;
+	font-size: 0.6em;
+	font-weight: 600;
+	letter-spacing: -0.02em;
 }
 
 .prose-page h2 {
@@ -426,10 +400,12 @@ a {
 	block-size: auto;
 }
 
+/* The icon sits on the first line, so a question that wraps keeps it beside its start. */
 .accordion-trigger {
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	gap: 1rem;
+	line-height: 1.35;
 	padding: 1.25rem 0;
 	border-radius: 0.5rem;
 	cursor: pointer;
@@ -454,6 +430,7 @@ a {
 	flex: none;
 	width: 1rem;
 	height: 1rem;
+	margin-top: calc((1lh - 1rem) / 2);
 	fill: none;
 	stroke: var(--color-faint);
 	stroke-width: 1.5;
@@ -580,6 +557,78 @@ a {
 	}
 }
 
+/* Phones: smaller type and tighter spacing, so lines aren't three words long. */
+@media (max-width: 639px) {
+	.prose-page {
+		padding-top: 7.5rem;
+		padding-bottom: 4rem;
+	}
+
+	.prose-page h1 {
+		margin-bottom: 1rem;
+		font-size: 2.5rem;
+	}
+
+	.prose-page h2 {
+		margin-top: 2.25rem;
+		font-size: 1.25rem;
+	}
+
+	.prose-page p,
+	.prose-page li {
+		font-size: 1rem;
+		line-height: 1.55;
+	}
+
+	.prose-page li + li {
+		margin-top: 0.5rem;
+	}
+
+	.prose-page .meta {
+		font-size: 0.875rem;
+	}
+
+	.prose-page .lead {
+		margin-top: 1.25rem;
+		font-size: 1.125rem;
+		line-height: 1.5;
+	}
+
+	.prose-page .pills {
+		margin-top: 1.25rem;
+	}
+
+	.prose-page .pills li {
+		padding: 0.3125rem 0.75rem;
+		font-size: 0.8125rem;
+	}
+
+	.callout {
+		margin-top: 2rem;
+		border-radius: 1rem;
+		padding: 1.125rem 1.25rem;
+	}
+
+	.accordion {
+		margin-top: 0.75rem;
+	}
+
+	.accordion-trigger {
+		gap: 0.75rem;
+		padding: 1rem 0;
+		font-size: 1rem;
+	}
+
+	.accordion-content {
+		padding: 0 0 1.25rem 1.75rem;
+	}
+
+	.prose-page .accordion-content p {
+		color: #44403c;
+		font-size: 0.9375rem;
+	}
+}
+
 @media (prefers-reduced-motion: reduce) {
 	html {
 		scroll-behavior: auto;
@@ -591,4 +640,8 @@ a {
 		animation: none !important;
 		transition: none !important;
 	}
+}
+
+.nowrap {
+	white-space: nowrap;
 }

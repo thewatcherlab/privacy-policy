@@ -8,7 +8,6 @@ export const app: AppInfo = {
 	description:
 		"Support for Halo: Budget, Bills & Goals. Track bills and spending, set budgets and savings goals, and get reminded before a payment is due.",
 	email: "halomoney@thewatcherlab.com",
-	glyph: "halo",
 	accent: "#10b981",
 	accentSoft: "#ecfdf5",
 };

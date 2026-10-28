@@ -12,9 +12,8 @@ export interface AppInfo {
 	platform: string;
 	description: string;
 	email: string;
-	/** Which mark the header and favicon draw. */
-	glyph: "peel" | "halo";
-	/** The app's color, used by the logo, focus rings and selection. */
+	/** The app's color, used by focus rings, links and selection. The app icon lives in
+	 * public/ as icon-96.png, favicon.png and apple-touch-icon.png. */
 	accent: string;
 	/** A pale tint of the accent, for soft backgrounds. */
 	accentSoft: string;

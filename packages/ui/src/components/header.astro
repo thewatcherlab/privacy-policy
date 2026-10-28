@@ -1,5 +1,4 @@
 ---
-import LogoGlyph from "./logo-glyph.astro";
 import type { AppInfo } from "../app";
 
 interface Props {
@@ -12,7 +11,7 @@ const { app } = Astro.props;
 <header class="site-header">
 	<div class="header-bar">
 		<a class="logo" href="/" aria-label={`${app.name} support`}>
-			<span class="logo-mark"><LogoGlyph glyph={app.glyph} /></span>
+			<img class="logo-mark" src="/icon-96.png" width="40" height="40" alt="" />
 			<span class="logo-name">{app.name}</span>
 		</a>
 		<nav class="header-nav" aria-label="Primary">

@@ -7,7 +7,6 @@ export const app: AppInfo = {
 	platform: "iPhone",
 	description: "Support for Peel: Coffee Bag Journal. Snap a coffee bag, get a sticker, build your collection.",
 	email: "peel@thewatcherlab.com",
-	glyph: "peel",
 	accent: "#d97706",
 	accentSoft: "#fef3c7",
 };
